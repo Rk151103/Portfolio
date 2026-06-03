@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --navy:   #0f1f35;
-    --teal:   #0d7377;
-    --teal2:  #14a085;
-    --accent: #f0c040;
-    --light:  #e8f4f4;
-    --grey:   #8a9bb0;
-    --white:  #f5f9ff;
-    --card:   #162840;
-    --border: rgba(13,115,119,0.25);
+    --navy:   #030d1a;
+    --teal:   #0097a7;
+    --teal2:  #00e5ff;
+    --accent: #80deea;
+    --light:  #e0f7fa;
+    --grey:   #7fb3c8;
+    --white:  #e8f8ff;
+    --card:   #071525;
+    --border: rgba(0,229,255,0.18);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -31,7 +31,15 @@
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0,151,167,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(0,229,255,0.07) 0%, transparent 50%);
     pointer-events: none; z-index: 0;
   }
 
@@ -47,7 +55,9 @@
   .nav-logo {
     font-family: 'Syne', sans-serif;
     font-weight: 800; font-size: 1.2rem;
-    color: var(--teal2); letter-spacing: 1px;
+    background: linear-gradient(135deg, #0097a7, #00e5ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: 1px;
   }
   .nav-links { display: flex; gap: 32px; list-style: none; }
   .nav-links a {
@@ -67,8 +77,8 @@
   }
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
-    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(13,115,119,0.15) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(20,160,133,0.08) 0%, transparent 60%);
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,151,167,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0,229,255,0.10) 0%, transparent 60%);
   }
   .hero-grid {
     position: absolute; inset: 0; z-index: 0;
@@ -81,9 +91,9 @@
   .hero-content { position: relative; z-index: 1; max-width: 700px; }
   .hero-tag {
     display: inline-block;
-    background: rgba(13,115,119,0.2);
-    border: 1px solid var(--teal);
-    color: var(--teal2); font-size: 0.75rem;
+    background: rgba(0,151,167,0.15);
+    border: 1px solid rgba(0,229,255,0.4);
+    color: #00e5ff; font-size: 0.75rem;
     font-weight: 500; letter-spacing: 2px;
     padding: 6px 14px; border-radius: 100px;
     margin-bottom: 24px;
@@ -96,7 +106,18 @@
     color: var(--white); margin-bottom: 16px;
     animation: fadeUp 0.6s 0.1s ease both;
   }
-  h1 span { color: var(--teal2); }
+  h1 span {
+    background: linear-gradient(90deg, #0097a7, #00e5ff, #80deea, #00e5ff, #0097a7);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: oceanShimmer 3s linear infinite;
+  }
+  @keyframes oceanShimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
   .hero-sub {
     font-size: 1.05rem; color: var(--grey);
     line-height: 1.7; max-width: 520px;
@@ -114,10 +135,10 @@
     transition: all 0.2s; display: inline-block;
   }
   .btn-primary {
-    background: var(--teal); color: #fff;
-    border: 1px solid var(--teal);
+    background: linear-gradient(135deg, #0097a7, #00e5ff);
+    color: #030d1a; border: none; font-weight: 700;
   }
-  .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,115,119,0.4); }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,229,255,0.4); }
   .btn-outline {
     background: transparent; color: var(--white);
     border: 1px solid var(--border);
@@ -132,7 +153,7 @@
   }
   .scroll-line {
     width: 1px; height: 40px;
-    background: linear-gradient(to bottom, var(--teal2), transparent);
+    background: linear-gradient(to bottom, #f5c842, transparent);
     animation: scrollPulse 2s infinite;
   }
 
@@ -152,7 +173,7 @@
   .section-title span { color: var(--teal2); }
 
   /* ── ABOUT ── */
-  #about { background: rgba(22,40,64,0.5); }
+  #about { background: rgba(3,13,26,0.6); }
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -203,7 +224,7 @@
   .skill-card::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--teal), var(--teal2));
+    background: linear-gradient(90deg, #0097a7, #00e5ff, #80deea);
     transform: scaleX(0); transform-origin: left;
     transition: transform 0.3s;
   }
@@ -212,19 +233,21 @@
   .skill-cat-title {
     font-family: 'Syne', sans-serif;
     font-size: 0.85rem; font-weight: 700;
-    color: var(--teal2); letter-spacing: 1px;
+    background: linear-gradient(135deg, #0097a7, #00e5ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; letter-spacing: 1px;
     text-transform: uppercase; margin-bottom: 14px;
   }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .tag {
-    background: rgba(13,115,119,0.12);
-    border: 1px solid rgba(13,115,119,0.3);
+    background: rgba(0,151,167,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
     color: var(--light); font-size: 0.78rem;
     padding: 4px 12px; border-radius: 100px;
   }
 
   /* ── PROJECTS ── */
-  #projects { background: rgba(22,40,64,0.5); }
+  #projects { background: rgba(3,13,26,0.6); }
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px; }
   .project-card {
     background: var(--card);
@@ -256,9 +279,9 @@
   }
   .project-techs { display: flex; flex-wrap: wrap; gap: 8px; }
   .tech-pill {
-    background: rgba(240,192,64,0.1);
-    border: 1px solid rgba(240,192,64,0.25);
-    color: var(--accent); font-size: 0.72rem;
+    background: rgba(0,151,167,0.12);
+    border: 1px solid rgba(0,229,255,0.3);
+    color: #00e5ff; font-size: 0.72rem;
     padding: 3px 10px; border-radius: 100px;
     font-weight: 500;
   }
@@ -270,15 +293,15 @@
     content: '';
     position: absolute; left: 0; top: 8px; bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, var(--teal2), transparent);
+    background: linear-gradient(to bottom, #f5c842, transparent);
   }
   .edu-item { position: relative; margin-bottom: 40px; }
   .edu-item::before {
     content: '';
     position: absolute; left: -38px; top: 6px;
     width: 12px; height: 12px; border-radius: 50%;
-    background: var(--teal2);
-    box-shadow: 0 0 0 3px rgba(20,160,133,0.2);
+    background: #00e5ff;
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.25);
   }
   .edu-year {
     font-size: 0.72rem; color: var(--teal2);
@@ -300,7 +323,7 @@
   }
 
   /* ── CERTIFICATIONS ── */
-  #certifications { background: rgba(22,40,64,0.5); }
+  #certifications { background: rgba(3,13,26,0.6); }
   .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .cert-card {
     background: var(--card); border: 1px solid var(--border);
@@ -311,7 +334,7 @@
   .cert-card:hover { border-color: var(--teal); transform: translateY(-3px); }
   .cert-icon {
     width: 40px; height: 40px; border-radius: 10px;
-    background: linear-gradient(135deg, var(--teal), var(--teal2));
+    background: linear-gradient(135deg, #0097a7, #00e5ff);
     display: flex; align-items: center; justify-content: center;
     font-size: 1.1rem; flex-shrink: 0;
   }
@@ -334,6 +357,19 @@
   .contact-wrap {
     display: grid; grid-template-columns: 1fr 1.4fr;
     gap: 60px; align-items: start;
+  }
+  .open-work-badge {
+    display: inline-flex; align-items: center; gap-8px;
+    background: rgba(0,151,167,0.15);
+    border: 1px solid rgba(0,229,255,0.4);
+    color: #00e5ff; font-size: 0.82rem; font-weight: 600;
+    padding: 7px 16px; border-radius: 100px;
+    margin-bottom: 16px; letter-spacing: 0.5px;
+    animation: pulse-green 2s infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(0,229,255,0); }
   }
   .contact-info h3 {
     font-family: 'Syne', sans-serif;
@@ -390,9 +426,9 @@
   .form-group select option { background: var(--navy); }
   .form-submit {
     width: 100%; padding: 14px;
-    background: linear-gradient(135deg, var(--teal), var(--teal2));
+    background: linear-gradient(135deg, #0097a7, #00e5ff);
     border: none; border-radius: 8px;
-    color: #fff; font-family: 'DM Sans', sans-serif;
+    color: #030d1a; font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem; font-weight: 500;
     cursor: pointer; transition: all 0.2s;
     letter-spacing: 0.5px;
@@ -410,7 +446,11 @@
     border-top: 1px solid var(--border);
     color: var(--grey); font-size: 0.8rem;
   }
-  footer span { color: var(--teal2); }
+  footer span {
+    background: linear-gradient(90deg, #0097a7, #00e5ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
@@ -437,6 +477,23 @@
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 24px; }
   }
+
+  .github-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 18px;
+    padding: 9px 18px; border-radius: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--white); font-size: 0.82rem;
+    text-decoration: none; font-weight: 500;
+    transition: all 0.2s;
+  }
+  .github-btn:hover {
+    background: rgba(13,115,119,0.15);
+    border-color: var(--teal);
+    color: var(--teal2);
+    transform: translateY(-2px);
+  }
 </style>
 </head>
 <body>
@@ -459,7 +516,7 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-tag">&#9679; Available for Opportunities</div>
+    <div class="hero-tag">&#128994; Open to Work &amp; Opportunities</div>
     <h1>Rakesh<br/><span>Kore.</span></h1>
     <p class="hero-sub">Aspiring AI/ML Engineer building intelligent systems — from real-time computer vision pipelines to deep learning frameworks for healthcare.</p>
     <div class="hero-btns">
@@ -607,6 +664,9 @@
         <span class="tech-pill">Computer Vision</span>
         <span class="tech-pill">Machine Learning</span>
       </div>
+      <a href="https://github.com/Rk151103/desktop-tutorial" target="_blank" class="github-btn">
+        <span>⭐ View on GitHub</span>
+      </a>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
@@ -619,6 +679,9 @@
         <span class="tech-pill">Deep Learning</span>
         <span class="tech-pill">Machine Learning</span>
       </div>
+      <a href="https://github.com/Rk151103/desktop-tutorial" target="_blank" class="github-btn">
+        <span>⭐ View on GitHub</span>
+      </a>
     </div>
   </div>
 </section>
@@ -708,7 +771,8 @@
   <div class="contact-wrap reveal">
     <div class="contact-info">
       <h3>Open to opportunities & collaborations</h3>
-      <p>Whether you have a job opportunity, a project idea, or just want to connect — feel free to reach out. I'm actively looking for AI/ML roles and internships.</p>
+      <div class="open-work-badge">🟢 Open to Work</div>
+      <p>I am actively looking for <strong>AI/ML Engineer roles, internships, and project collaborations</strong>. Whether you have a job opportunity or just want to connect — feel free to reach out!</p>
       <div class="contact-links">
         <a href="mailto:rakeshkore1001@gmail.com" class="contact-link">
           <span class="contact-link-icon">📧</span>
